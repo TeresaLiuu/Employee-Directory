@@ -1,32 +1,43 @@
-import React from 'react';
 import './App.css';
-// import API from './utils/API';
+import API from './utils/API';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
-import Container from './components/Container'
+import EmployeeHeader from './components/EmployeeHeader';
+import EmployeeList from './components/EmployeeList';
+import { Col, Container, Row } from './components/Grid';
+import React, { useEffect, useState } from 'react';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      result: [],
-      lastSort: '',
-      search: '',
-      startDate: '1980-01-01',
-      endDate: '1990-01-01',
-    };
-  }
+function APP() {
+    const [employees, setEmployees] = useState([]);
+    const [lastSort, setLastSort] = useState('');
+    const [search, setSearch] = useState('');
+    const [date, setDate] = useState('');
 
-  render() {
+    useEffect(() => {
+        API.getEmployeeList().then((res) => {
+            setEmployees(res.data.results)
+        });
+    }, []);
+
+
+  
     return (
-      <div>
-        <Header />
-        <NavBar />
-        <Container />
-      </div>
+        <div>
+            <Header />
+            <NavBar />
+            <Container fluid>
+                <Row>
+                    <Col size="md-12">
+                        <EmployeeHeader />
+                    </Col>
+                    <Col size="md-12">
+                        <EmployeeList />
+                    </Col>
+                </Row>
+            </Container>
+        </div>
     );
-  }
-
 }
 
-export default App;
+
+export default APP;

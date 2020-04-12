@@ -1,8 +1,12 @@
 import React from 'react';
 import './style.css';
-import DOB from '../DOB';
+import DOBSearch from '../DOBSearch';
 
 function NavBar(props) {
+    const clickHandler = (event) => {
+        event.preventDefault();
+    }
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -10,13 +14,13 @@ function NavBar(props) {
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item active">
-                            <DOB />
+                            <DOBSearch />
                         </li>
                         <li className="nav-item">
-                            <DOB />
+                            <DOBSearch />
                         </li>
                     </ul>
-                    <form className="form-inline my-2 my-lg-0">
+                    <form className="form-inline">
                         <input
                             value={props.search}
                             className="form-control mr-sm-2"
@@ -24,7 +28,7 @@ function NavBar(props) {
                             placeholder="Search"
                             aria-label="Search"
                         ></input>
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <button className="btn btn-outline-success" type="submit" onClick={()=>props.clickHandler(...props.args)}>Search</button>
                     </form>
                 </div>
             </nav>
