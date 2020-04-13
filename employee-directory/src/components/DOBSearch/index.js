@@ -4,15 +4,21 @@ import './style.css';
 function DOBSearch(props) {
     return (
         <div className="container">
-            <div className="row">
-                <div className='col-lg-3'>
-                    <form id="dob" action="/action_page.php">
-                        <label for="DOB" >DOB:</label>
-                        <input type="date"></input>
-                    </form>
-                </div>
-            </div>
-                </div>
+            <input
+                onChange={props.handleStartInputChange}
+                name="start"
+                type="date"
+                className="form-control"
+                id="startingDate"
+            />
+            <input
+                onChange={props.handleEndInputChange}
+                name="end"
+                type="date"
+                className="form-control"
+                id="endingDate"
+            />
+        </div>
     )
 }
 
